@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: mysql-enum-dialect
+
+  datasource:
+    url: jdbc:tc:mysql:8.0.24:///test?TC_REUSABLE=true
+
+  flyway:
+    locations: classpath:db/migration/mysql

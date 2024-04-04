@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: postgres-enum-dialect
+
+  datasource:
+    url: jdbc:tc:postgis:15-3.4:///test?TC_REUSABLE=true
+
+  flyway:
+    locations: classpath:db/migration/postgres
