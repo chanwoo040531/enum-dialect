@@ -19,14 +19,12 @@ class ContainerConfig {
     @Profile("mysql")
     @ServiceConnection
     fun mysqlContainer(): MySQLContainer<*> =
-        MySQLContainer(DockerImageName.parse("mysql:8.0.24"))
-
-    private val postgisImage: DockerImageName = DockerImageName.parse("postgis/postgis:15-3.4")
-        .asCompatibleSubstituteFor("postgres")
+        DockerImageName.parse("mysql/mysql-server:8.0.32").asCompatibleSubstituteFor("mysql")
+            .let { image -> MySQLContainer(image) }
 
     @Bean
     @Profile("postgres")
     @ServiceConnection
     fun postgresContainer(): PostgreSQLContainer<*> =
-        PostgreSQLContainer(postgisImage)
+        PostgreSQLContainer("postgres:15.6-alpine3.19")
 }

@@ -3,7 +3,7 @@ spring:
     name: postgres-enum-dialect
 
   datasource:
-    url: jdbc:tc:postgis:15-3.4:///test?TC_REUSABLE=true
+    url: jdbc:tc:postgres:15.6-alpine3.19:///test?TC_REUSABLE=true
 
   flyway:
     locations: classpath:db/migration/postgres
