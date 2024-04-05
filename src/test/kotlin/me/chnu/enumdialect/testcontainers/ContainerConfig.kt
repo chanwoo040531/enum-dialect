@@ -20,10 +20,19 @@ class ContainerConfig {
     fun mysqlContainer(): MySQLContainer<*> =
         DockerImageName.parse("mysql/mysql-server:8.0.32").asCompatibleSubstituteFor("mysql")
             .let { image -> MySQLContainer(image) }
+            .apply {
+                withDatabaseName("testdb")
+                withUsername("testuser")
+                withPassword("testpass")
+            }
 
     @Bean
     @Profile("postgres")
     @ServiceConnection
     fun postgresContainer(): PostgreSQLContainer<*> =
-        PostgreSQLContainer("postgres:15.6-alpine3.19")
+        PostgreSQLContainer("postgres:15.6-alpine3.19").apply {
+            withDatabaseName("testdb")
+            withUsername("testuser")
+            withPassword("testpass")
+        }
 }

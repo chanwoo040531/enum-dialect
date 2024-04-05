@@ -1,10 +1,12 @@
-create type posting_status as enum ('DRAFT', 'PUBLISHED', 'ARCHIVED');
+create type postingstatus as enum ('DRAFT', 'PUBLISHED', 'ARCHIVED');
 
 create table if not exists postings
 (
-    id      bigint,
+    id      bigserial,
     title   text,
     content text,
-    status  posting_status not null default 'DRAFT',
+    status  postingstatus not null default 'DRAFT',
     primary key (id)
 );
+
+insert into postings (title, content, status) values ('First Post', 'This is my first post', 'DRAFT');

@@ -3,9 +3,11 @@ package me.chnu.enumdialect
 import me.chnu.enumdialect.annotation.MysqlTest
 import me.chnu.enumdialect.domain.posting.Posting
 import me.chnu.enumdialect.domain.posting.PostingRepository
+import me.chnu.enumdialect.domain.posting.PostingStatus
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.repository.findByIdOrNull
 
 @MysqlTest
 class MysqlTests {
@@ -13,13 +15,28 @@ class MysqlTests {
     private lateinit var postingRepository: PostingRepository
 
     @Test
-    @DisplayName("Context loads successfully for Mysql")
+    @DisplayName("Load contexts")
     fun contextLoads() {
     }
 
     @Test
-    @DisplayName("Create posting for Mysql")
+    @DisplayName("Insert a posting")
     fun createPosting() {
-        postingRepository.save(Posting.INSTANCE)
+        postingRepository.save(Posting(title = "title", content = "content", status = PostingStatus.DRAFT))
+    }
+
+    @Test
+    @DisplayName("Inquire a posting")
+    fun getPosting() {
+        postingRepository.findById(1)
+    }
+
+    @Test
+    @DisplayName("Update a posting")
+    fun updatePosting() {
+        postingRepository.findByIdOrNull(1L)?.let {
+            it.status = PostingStatus.PUBLISHED
+            postingRepository.save(it)
+        }
     }
 }
