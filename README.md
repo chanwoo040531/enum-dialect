@@ -1,9 +1,19 @@
 # Enum Dialect Comparison
 
-## PostgreSQL
-- load contexts: o
-- insert a row: x
+## PostgreSQL Test Results
+|                  | None | ENUM | NAMED_ENUM |
+|------------------|------|------|------------|
+| **contextLoads** |      |      |            |
+| **insert**       |      |      |            |
+| **select**       |      |      |            |
+| **update**       |      |      |            |
+| **delete**       |      |      |            |
 
-## MySQL
-- load contexts: o
-- insert a row: o
+## MySQL Test Results
+|                  | None | ENUM | NAMED_ENUM |
+|------------------|------|------|------------|
+| **contextLoads** |      |      |            |
+| **insert**       |      |      |            |
+| **select**       |      |      |            |
+| **update**       |      |      |            |
+| **delete**       |      |      |            |
